@@ -12,8 +12,10 @@ private:
 
 public:
 
+
     Student();
     Student(std::string name, std::string fac, int year);
+    Student(const Student& Ref);
     Student(std::string name, std::string fac, int year, bool message);
 
     ~Student();
