@@ -11,13 +11,15 @@ int main() {
 
     Teacher t2("Diakonenko Bohdan Viktorovich", "IFTKN", 1, true);
 
-    Teacher t3("Val Oleksandr Olekasandrovich", "IFTKN", 99, true);
+    Teacher t3("Val Oleksandr Olekasandrovich", "IFTKN", 100, true);
 
     Student s1;
 
     Student s3("Mariana", "IPZ", 3, true);
 
-    Student s2("Andriy", "Mathematics", 1, true);
+    Student s4 = s3;
+
+    Student s2("Oleksandra", "IPZ", 1, true);
 
     Faculty f1();
 
@@ -32,14 +34,9 @@ int main() {
     cout << endl;
 
     s3.printInfo();
-
-    t1.printInfo();
     cout << endl;
 
-    t2.printInfo();
-    cout << endl;
-
-    t3.printInfo();
+    s4.printInfo();
     cout << endl;
 
     f3.printInfo();
