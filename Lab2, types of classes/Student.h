@@ -1,26 +1,25 @@
 #ifndef STUDENT_H
 #define STUDENT_H
 
+#include "Person.h"
 #include <string>
+#include <iostream>
 
-class Student {
-
-private:
-    std::string NameOfStudent;
-    std::string faculty;
-    int yearOfStudy;
-
+class Student : public Person {
 public:
+    Student(std::string n);
 
+    // 1. Демонстрація проблеми статичної прив'язки
+    void printRole();
 
-    Student();
-    Student(std::string name, std::string fac, int year);
-    Student(const Student& Ref);
-    Student(std::string name, std::string fac, int year, bool message);
+    // 3. Перевизначення (Override)
+    void showDetails() override;
+    void work() override;
+
+    // 5. Використання final (цей метод не можна буде перевизначити далі)
+    void getDailyAllowance() override final;
 
     ~Student();
-
-    void printInfo();
 };
 
 #endif

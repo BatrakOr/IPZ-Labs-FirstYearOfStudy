@@ -1,24 +1,23 @@
 #ifndef FACULTY_H
 #define FACULTY_H
 
+#include "IPrintable.h"
 #include <string>
+#include <vector>
 
-class Faculty {
-
+class Faculty : public IPrintable {
 private:
-    int NumberOfStudents;
-    int AcademicGroupNumber;
-    std::string SenseiOfTheGroup;
+    std::string title;
+    int studentCount;
 
 public:
+    Faculty(std::string t, int count);
 
-    Faculty();
-    Faculty(int numofs, int nomofgr, std::string sensei);
-    Faculty(int numofs, int nomofgr, std::string sensei, bool message);
+    // Реалізація методу інтерфейсу
+    void printToConsole() override;
 
+    // Деструктор
     ~Faculty();
-
-    void printInfo();
 };
 
 #endif
