@@ -1,29 +1,22 @@
-#include <iostream>
-#include<string>
 #include "Faculty.h"
+#include <iostream>
 
-using namespace std;
-
-Faculty::Faculty()
-    : NumberOfStudents(1), AcademicGroupNumber(1), SenseiOfTheGroup("Unknown") {
-    cout << "Default constructor called" << endl;
+// Конструктор
+Faculty::Faculty(std::string t, int count) : title(t), studentCount(count) {
+    std::cout << "[Faculty] Created: " << title << std::endl;
 }
 
-Faculty::Faculty(int numofs, int nomofgr, string sensei)
-    : NumberOfStudents(numofs), AcademicGroupNumber(nomofgr), SenseiOfTheGroup(sensei) {
-    cout << "Constructor with parameters called" << endl;
+// Реалізація чисто віртуальної функції з інтерфейсу IPrintable
+// Це виконує пункт №8 завдання
+void Faculty::printToConsole() {
+    std::cout << "\n================================" << std::endl;
+    std::cout << " FACULTY REPORT" << std::endl;
+    std::cout << " Title: " << title << std::endl;
+    std::cout << " Number of students: " << studentCount << std::endl;
+    std::cout << "================================" << std::endl;
 }
 
-Faculty::Faculty(int numofs, int nomofgr, string sensei, bool message)
-    : NumberOfStudents(numofs), AcademicGroupNumber(nomofgr), SenseiOfTheGroup(sensei) {
-    cout << "Overloaded constructor called" << endl;
-}
-
+// Деструктор
 Faculty::~Faculty() {
-}
-
-void Faculty::printInfo() {
-    cout << "Number of students in academic group: " << NumberOfStudents << endl;
-    cout << "Number of academic group: " << AcademicGroupNumber << endl;
-    cout << "Sensei of thr academic group: " << SenseiOfTheGroup << endl;
+    std::cout << "[Faculty] " << title << " object destroyed" << std::endl;
 }

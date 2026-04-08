@@ -1,49 +1,42 @@
-﻿#include <iostream>
-#include<string>
-#include "Student.h"
-#include "Teacher.h"
+﻿#include "Student.h"
 #include "Faculty.h"
-
-using namespace std;
+#include <vector>
 
 int main() {
-    Teacher t1;
+    // Створюємо об'єкт через вказівник на базовий клас
+    Person* personPtr = new Student("Ivan");
 
-    Teacher t2("Diakonenko Bohdan Viktorovich", "IFTKN", 1, true);
+    // 1. Демонстрація проблеми статичної прив'язки
+    // Викличеться метод Person, хоча об'єкт - Student
+    std::cout << "--- Static Binding ---" << std::endl;
+    personPtr->printRole();
 
-    Teacher t3("Val Oleksandr Olekasandrovich", "IFTKN", 100, true);
+    // 3. Динамічний поліморфізм (Base class pointer)
+    std::cout << "\n--- Dynamic Binding (Pointer) ---" << std::endl;
+    personPtr->showDetails(); // Викличе Student::showDetails
+    personPtr->work();        // Викличе Student::work
 
-    Student s1;
+    // 6. Динамічний поліморфізм (Base class reference)
+    std::cout << "\n--- Dynamic Binding (Reference) ---" << std::endl;
+    Person& ref = *personPtr;
+    ref.getDailyAllowance(); // Викличе Student::getDailyAllowance
 
-    Student s3("Mariana", "IPZ", 3, true);
+    // 8. Демонстрація інтерфейсу на різних класах
+    std::cout << "\n--- Interface Demo ---" << std::endl;
+    Faculty itFaculty("ComputerScience", 100);
+    itFaculty.printToConsole();
 
-    Student s4 = s3;
+    // 4. Віртуальний деструктор в дії
+    std::cout << "\n--- Virtual Destructor ---" << std::endl;
+    delete personPtr; // Викличе спочатку ~Student, потім ~Person
 
-    Student s2("Oleksandra", "IPZ", 1, true);
+    // У main.cpp
+    Faculty* myFaculty = new Faculty("Computer Science", 150);
 
-    Faculty f1();
+    // Виклик методу інтерфейсу
+    myFaculty->printToConsole();
 
-    Faculty f2(83, 143, "Kohut Oleh");
+    delete myFaculty;
 
-    Faculty f3(67, 999, "Bruce Wayne");
-
-    s1.printInfo();
-    cout << endl;
-
-    s2.printInfo();
-    cout << endl;
-
-    s3.printInfo();
-    cout << endl;
-
-    s4.printInfo();
-    cout << endl;
-
-    f3.printInfo();
-    cout << endl;
-
-    f2.printInfo();
-    cout << endl;
-
- return 0;
+    return 0;
 }
